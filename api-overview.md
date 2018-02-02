@@ -358,6 +358,7 @@ token: string (optional)
     "can_transfer_from": false, 
     "can_pay_payee": false, 
     "can_waive_fee": false, 
+    "fee_incurred": 0,
     "meta": [
         {
             "name": "string",
@@ -415,6 +416,7 @@ The mapping can change from Bank to Bank and is to be agreed with Kasisto prior 
 | can_transfer_from |  | x | x |  |  | x |
 | can_pay_payee |  | x | x |  |  | x |
 | can_waive_fee | x | x | x | x | x | x |
+| fee_incurred |  |  | x |  |  |  |
 
 7) For Accounts in foreign currency:
 

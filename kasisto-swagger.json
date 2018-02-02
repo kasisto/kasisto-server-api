@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.3.0 Beta",
+    "version": "1.3.0 Beta 3",
     "title": "Kasisto API",
     "description": "Kasisto Enterprise API",
     "contact": {
@@ -1759,6 +1759,10 @@
         "can_waive_fee": {
           "description": "True if fees for account can be waived",
           "type": "boolean"
+        },
+        "fee_inccured": {
+          "description": "Any fees incurred on the account E.g. monthly / annual fees",
+          "type": "float"
         },
         "meta": {
           "description": "Optional data if needed for application",
