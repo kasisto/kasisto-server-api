@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.3.0 Beta",
+    "version": "1.3.0 Beta 3",
     "title": "Kasisto API",
     "description": "Kasisto Enterprise API",
     "contact": {
@@ -1760,6 +1760,11 @@
           "description": "True if fees for account can be waived",
           "type": "boolean"
         },
+        "expiration_date" : {
+          "description" : "Expiration date of the account",
+          "type" : "string",
+          "format" : "date"
+        },
         "meta": {
           "description": "Optional data if needed for application",
           "type": "array",
@@ -2003,6 +2008,14 @@
           "items": {
             "$ref": "#/definitions/name_value_pair"
           }
+        },
+        "category" : {
+          "description" : "Category that the payee belongs to",
+          "type" : "string",
+          "enum": [
+            "payee",
+            "biller"
+          ]
         }
       }
     }

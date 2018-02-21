@@ -1,5 +1,5 @@
 # Kasisto Enterprise API Overview
-Version 1.3 beta 2
+Version 1.3 beta 3
 
 - [Authentication](#authentication)
 - [Authorization](#authorization)
@@ -358,6 +358,7 @@ token: string (optional)
     "can_transfer_from": false, 
     "can_pay_payee": false, 
     "can_waive_fee": false, 
+    "expiration_date": "2016-01-30",
     "meta": [
         {
             "name": "string",
@@ -408,9 +409,10 @@ The mapping can change from Bank to Bank and is to be agreed with Kasisto prior 
 | payment_due_amount |  |  | x | x | x |  |
 | payment_due_date |  |  | x | x | x |  |
 | minimum_payment_due_amount |  |  | x | x | x |  |
-| reward_points |  | x | x |  |  | x |
-| reward_miles |  | x | x |  |  | x |
-| reward_cashback |  | x | x |  |  | x |
+| reward_points |  |  | x |  |  |  |
+| reward_miles |  |  | x |  |  |  |
+| reward_cashback |  |  | x |  |  |  |
+| expiration_date |  |  | x |  |  |  |
 | can_transfer_to | x | x | x | x | x | x |
 | can_transfer_from |  | x | x |  |  | x |
 | can_pay_payee |  | x | x |  |  | x |
@@ -942,6 +944,7 @@ token: string (optional)
 [{
     "payee_id": "string",
     "name": "string",
+    "category" : "string",
     "alias": [
         "string"
     ],
