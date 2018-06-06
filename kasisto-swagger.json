@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.3.0 Beta 6",
+    "version": "1.3.0 Beta 7",
     "title": "Kasisto API",
     "description": "Kasisto Enterprise API",
     "contact": {
@@ -1671,6 +1671,9 @@
           "type": "string"
         },
         "token": {
+          "type": "string"
+        },
+        "refresh_token" : {
           "type": "string"
         },
         "meta": {

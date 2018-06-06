@@ -1,5 +1,5 @@
 # Kasisto Enterprise API Overview
-Version 1.3 beta 6
+Version 1.3 Beta 7
 
 - [Authentication](#authentication)
 - [Authorization](#authorization)
@@ -75,7 +75,7 @@ All the service in the Kasisto API should follow the same exception handling mec
 POST /token
 ```
 
-Gets an access token for a customer.
+Obtains authentication tokens for the customer.
 
 This service is used for the Authentication pass-through mechanism. (Please check the KAI Conversational API specs for details on this login flow)
 
@@ -130,6 +130,7 @@ token: string (optional)
 {
     "user_id": "string", 
     "token": "string",
+    "refresh_token" : "string",
     "meta": [
         {
             "name": "string", 
@@ -138,6 +139,10 @@ token: string (optional)
     ]
 }
 ```
+
+##### Notes:
+
+The ```/token``` operation should return at least 1 token. I.e. ```token``` and ```refresh_token``` cannot both be blank.
 
 #### Validate OTP
 
