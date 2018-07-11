@@ -1,0 +1,347 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Kasisto Forms API",
+    "description": "Kasisto Forms API",
+    "contact": {
+      "name": "Kasisto API team",
+      "email": "info@kasisto.com",
+      "url": "http://kasisto.com"
+    }
+  },
+  "host": "localhost:8090",
+  "basePath": "/kai/api/v1",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "Get Forms"
+    },
+    {
+      "name": "Add Form"
+    },
+    {
+      "name": "Delete Form"
+    }
+  ],
+  "paths": {
+    "/forms": {
+      "get": {
+        "x-name": "Forms",
+        "tags": [
+          "Get Forms"
+        ],
+        "description": "Get form(s).",
+        "parameters": [
+          {
+            "name": "secret",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "header",
+            "required":false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Forms response",
+            "schema": {
+              "$ref": "#/definitions/forms_response"
+            }
+          },
+          "401": {
+            "description": "Authentication Failed",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          },
+          "403": {
+            "description": "Access Denied",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          },
+          "501": {
+            "description": "Not Implemented",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      },
+      "delete": {
+        "x-name": "Forms",
+        "tags": [
+          "Delete Form"
+        ],
+        "description": "Delete a form.",
+        "parameters": [
+          {
+            "name": "secret",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "header",
+            "required":true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response"
+          },
+          "401": {
+            "description": "Authentication Failed",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          },
+          "403": {
+            "description": "Access Denied",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          },
+          "501": {
+            "description": "Not Implemented",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      },
+      "post": {
+        "x-name": "Forms",
+        "tags": [
+          "Add Form"
+        ],
+        "description": "Add or update a form.",
+        "parameters": [
+          {
+            "name": "secret",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "form_request",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/form_request"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response"
+          },
+          "401": {
+            "description": "Authentication Failed",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          },
+          "403": {
+            "description": "Access Denied",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          },
+          "501": {
+            "description": "Not Implemented",
+            "schema": {
+              "$ref": "#/definitions/error_response"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "error_response": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "otp_details": {
+          "type": "string"
+        },
+        "display_message_id": {
+          "type": "string"
+        },
+        "meta": {
+          "description": "Optional data if needed for application",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/name_value_pair"
+          }
+        }
+      }
+    },
+    "form_request": {
+      "type": "object",
+      "properties": {
+        "form_name":{
+          "type": "string"
+        },
+        "form_type":{
+          "type": "string",
+          "enum": [
+              "Static",
+              "Dynamic"
+          ]
+        },
+        "intent_samples":{
+          "type": "array",
+          "items":{
+            "type": "string"
+          }
+        },
+        "fields": {
+          "description": "Fields for static forms",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/field"
+          }
+        }
+      }
+    },
+    "field":{
+      "type": "object",
+      "properties": {
+        "name":{
+          "type": "string"
+        },
+        "type":{
+          "type": "string",
+          "enum": [
+              "Options",
+              "String",
+              "Boolean",
+              "Date",
+              "Number"
+          ]
+        },
+        "input_mode":{
+          "type": "string",
+          "enum": [
+              "CAROUSEL",
+              "QUICK_REPLIES"
+          ]
+        },
+        "message_contents":{
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/message_content"
+          }
+        },
+        "options":{
+          "description": "Options for options field type",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/option"
+          }
+        }
+      }
+    },
+    "name_value_pair": {
+      "type": "object",
+      "required": [
+        "name",
+        "value"
+      ],
+      "properties": {
+        "name": {
+          "description": "Name of the field",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value of the field",
+          "type": "string"
+        }
+      }
+    },
+    "message_content":
+      {
+        "type":"object",
+        "properties":{
+            "type":{
+                "type":"string",
+                  "enum": [
+                      "TEXT",
+                      "BUTTON",
+                      "MEDIUM",
+                      "CONTAINER",
+                      "EVENT",
+                      "CARD"
+                  ]
+            },
+            "payload":{
+                "type":"object"
+            },
+            "segment_name":
+            {
+                "type":"string"
+            }
+        }
+      },
+    "option":
+      {
+        "type":"object",
+        "properties":{
+            "value":{
+                "type": "string"
+            },
+            "title":{
+                "type": "string"
+            },
+            "subtitle":{
+                "type": "string"
+            },
+            "label":{
+                "type": "string"
+            },
+            "medium":{
+                "type":"object"
+            }
+        }
+      }
+    }
+}

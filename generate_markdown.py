@@ -1,5 +1,6 @@
 import json
 from collections import OrderedDict
+import sys
 
 def generate_markdown(input_filename):
     spec=json.loads(open(input_filename,'r').read(),object_pairs_hook=OrderedDict)
@@ -192,4 +193,7 @@ def generate_schema(spec,def_obj):
     return obj
 
 if __name__=='__main__':
-    generate_markdown('kasisto-swagger.json')
+    if len(sys.argv)==2:
+        generate_markdown(sys.argv[1])
+    else:
+        generate_markdown('kasisto-swagger.json')
