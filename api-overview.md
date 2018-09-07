@@ -416,9 +416,7 @@ token: string (optional)
 ```
 
 ##### Notes:
-1) The field "account_type" in response should be one of the following:
-    "cd","checking","credit_card","ira","investment","loc","loan","money_market","mortgage","savings", "heloc",.
-
+1) The field "account_type" in response should typically be any one of the following: "cd","checking","credit_card","loan","mortgage","savings". Please refer to the swagger specifications for a complete listing.
 
 2) The "account_number" of the account may optionally be masked. However, the last unique N digits in the account numbers must be provided. E.g. A credit card account number of "4515874554548888" can be returned as "8888" or "xxxxxxxxxxxx8888"    
 
@@ -1448,18 +1446,14 @@ request_id: string
     "response": {
         "message_contents": [
             {
-                "type": [
-                    "string"
-                ], 
+                "type": "string",
                 "payload": {}, 
                 "segment_name": "string"
             }
         ], 
         "quick_replies": [
             {
-                "type": [
-                   "string"
-                ], 
+                "type": "string",
                 "payload": "string", 
                 "display_text": "string"
             }
