@@ -1414,9 +1414,7 @@ request_id: string
 ```
 ```json
 {
-    "interaction_type": [
-       "string"
-    ], 
+    "interaction_type": "string", 
     "application": {
         "application_id": "string", 
         "locale": "string", 
