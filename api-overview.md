@@ -1,5 +1,5 @@
 # Kasisto Enterprise API Overview
-Version 1.3 Beta 7
+Version 1.3 Beta 8
 
 - [Authentication](#authentication)
 - [Authorization](#authorization)
@@ -375,30 +375,11 @@ token: string (optional)
 ```json
 [{
     "account_id": "string",
-    "account_type": [
-        "cd", 
-        "checking", 
-        "credit_card", 
-        "heloc", 
-        "ira", 
-        "investment", 
-        "loc", 
-        "loan", 
-        "money_market", 
-        "mortgage", 
-        "overdraft_protection", 
-        "sloc", 
-        "savings", 
-        "wire", 
-        "p2p_payment"
-    ], 
+    "account_type": "string",
     "account_number": "string",
     "account_name": "string",
     "account_nickname": "string",
-    "account_status": [
-        "active", 
-        "inactive"
-    ], 
+    "account_status": "string",
     "account_image": "string",
     "current_balance": 0.0, 
     "available_balance": 0.0, 
@@ -422,11 +403,7 @@ token: string (optional)
     "expiration_date": "2016-01-30",
     "available_cash_advance_limit": 0.0, 
     "original_tenor": 0,
-    "original_tenor_unit": [
-        "year", 
-        "month", 
-        "day"
-    ], 
+    "original_tenor_unit": "string",
     "maturity_date": "2016-01-30", 
     "annual_fee": 0.0, 
     "meta": [
@@ -440,8 +417,7 @@ token: string (optional)
 
 ##### Notes:
 1) The field "account_type" in response should be one of the following:
-    "cd","checking","credit_card","heloc","ira","investment","loc","loan","money_market","mortgage","overdraft_protection”,
-    "sloc","savings","wire".
+    "cd","checking","credit_card","ira","investment","loc","loan","money_market","mortgage","savings", "heloc",.
 
 
 2) The "account_number" of the account may optionally be masked. However, the last unique N digits in the account numbers must be provided. E.g. A credit card account number of "4515874554548888" can be returned as "8888" or "xxxxxxxxxxxx8888"    
@@ -457,7 +433,7 @@ All images should be hosted on a webserver. KAI doesn't provide any image hostin
 
 5) The field "payment_due_date" and "statement_date" in the response should be in "yyyy-MM-dd” Date format.
 
-6) If there is no meta then pass empty array.
+6) If there is no meta then pass an empty array.
 
 7) As a guidance, we show the supported features per account type in the table below.
 The mapping can change from Bank to Bank and is to be agreed with Kasisto prior to implementation : 
@@ -591,10 +567,7 @@ token: string (optional)
     "transaction_id": "string", 
     "title": "string",
     "description": "string", 
-    "transaction_type": [
-        "credit", 
-        "debit"
-    ], 
+    "transaction_type": "string",
     "amount": 0.0, 
     "currency_code": "string", 
     "categories": [
@@ -613,11 +586,7 @@ token: string (optional)
           "long": 0.0
         }
     },
-    "status": [
-        "posted", 
-        "pending", 
-        "cancelled"
-    ], 
+    "status": "string",
     "check_number": 0, 
     "transaction_date": "2016-01-30T00:00:00.000+0000", 
     "post_date": "2016-01-30T00:00:00.000+0000", 
@@ -873,12 +842,7 @@ token: string (optional)
 {
     "transfer_id": "string",
     "reference_number": "string",
-    "status": [
-        "processed", 
-        "pending", 
-        "cancelled", 
-        "failed"
-    ], 
+    "status": "string",
     "meta": [
         {
             "name": "string",
@@ -974,12 +938,7 @@ token: string (optional)
 {
     "payment_id": "string",
     "reference_number": "string",
-    "status": [
-        "processed", 
-        "pending", 
-        "cancelled", 
-        "failed"
-    ], 
+    "status": "string",
     "meta": [
         {
             "name": "string",
@@ -1073,10 +1032,7 @@ token: string (optional)
             "value": "string"
         }
     ], 
-    "category": [
-        "payee", 
-        "biller"
-    ]
+    "category": "string"
 }]
 ```
 
@@ -1154,10 +1110,7 @@ token: string (optional)
 ```json
 [{
     "location_id": "string",
-    "location_type": [
-        "atm", 
-        "bank"
-    ], 
+    "location_type": "string",
     "location_name": "string",
     "location_url": "string",
     "location": {
@@ -1188,9 +1141,11 @@ token: string (optional)
 ##### Notes:
 1) The field "location" can be omitted in the request when KAI searches for all locations.
 
-2) The field "opening_days" in the response should be one of the following: "monday", "tuesday", "wednesday", "thursday, "friday", "saturday", "sunday". It specifies the days of the week where the POI is open. The values should always be in English.
+2) The field "location" type can have values "atm" or "bank".
 
-3) The field "opening_hours" contains a text description of the opening hours. The description should be returned in the language matching the request "locale" parameter.
+3) The field "opening_days" in the response should be one of the following: "monday", "tuesday", "wednesday", "thursday, "friday", "saturday", "sunday". It specifies the days of the week where the POI is open. The values should always be in English.
+
+4) The field "opening_hours" contains a text description of the opening hours. The description should be returned in the language matching the request "locale" parameter.
 
     a) If locale is set to en_XX (en_US, en_HK, en_SG, etc..), the opening hours should be returned in English.
 
@@ -1383,12 +1338,7 @@ token: string (optional)
 {
     "reference_id": "string",
     "reference_number": "string",
-    "status": [
-        "processed", 
-        "pending", 
-        "cancelled", 
-        "failed"
-    ], 
+    "status": "string", 
     "display_message_id": "string",
     "meta": [
         {
@@ -1467,11 +1417,7 @@ request_id: string
 ```json
 {
     "interaction_type": [
-        "USER_INPUT", 
-        "PUSH_MESSAGE", 
-        "LIVE_CHAT_OPTION_DISPLAYED", 
-        "LOGOUT", 
-        "ENTER_TOKEN"
+       "string"
     ], 
     "application": {
         "application_id": "string", 
@@ -1503,12 +1449,7 @@ request_id: string
         "message_contents": [
             {
                 "type": [
-                    "TEXT", 
-                    "BUTTON", 
-                    "MEDIUM", 
-                    "CONTAINER", 
-                    "EVENT", 
-                    "CARD"
+                    "string"
                 ], 
                 "payload": {}, 
                 "segment_name": "string"
@@ -1517,8 +1458,7 @@ request_id: string
         "quick_replies": [
             {
                 "type": [
-                    "TEXT", 
-                    "LOCATION"
+                   "string"
                 ], 
                 "payload": "string", 
                 "display_text": "string"
@@ -1553,798 +1493,3 @@ token: string (optional)
 
 ```
 
-
-### Schema Definitions
-
-#### account
-
-```json
-{
-    "account_id": "string",
-    "account_type": [
-        "cd", 
-        "checking", 
-        "credit_card", 
-        "heloc", 
-        "ira", 
-        "investment", 
-        "loc", 
-        "loan", 
-        "money_market", 
-        "mortgage", 
-        "overdraft_protection", 
-        "sloc", 
-        "savings", 
-        "wire", 
-        "p2p_payment"
-    ], 
-    "account_number": "string",
-    "account_name": "string",
-    "account_nickname": "string",
-    "account_status": [
-        "active", 
-        "inactive"
-    ], 
-    "account_image": "string",
-    "current_balance": 0.0, 
-    "available_balance": 0.0, 
-    "fcy_currency_code": "string",
-    "fcy_current_balance": 0.0, 
-    "fcy_available_balance": 0.0, 
-    "credit_limit": 0.0, 
-    "interest_rate": 0.0, 
-    "available_credit": 0.0, 
-    "statement_date": "2016-01-30", 
-    "payment_due_amount": 0.0, 
-    "payment_due_date": "2016-01-30",
-    "minimum_payment_due_amount": 0.0, 
-    "reward_points": 0,
-    "reward_miles": 0,
-    "reward_cashback": 0.0, 
-    "can_transfer_to": true, 
-    "can_transfer_from": true, 
-    "can_pay_payee": true, 
-    "can_waive_fee": true, 
-    "expiration_date": "2016-01-30", 
-    "available_cash_advance_limit": 0.0, 
-    "original_tenor": 0, 
-    "original_tenor_unit": [
-        "year", 
-        "month", 
-        "day"
-    ], 
-    "maturity_date": "2016-01-30", 
-    "annual_fee": 0.0, 
-    "meta": [
-        {
-            "name": "string",
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### accounts_request
-
-```json
-{
-    "user_id": "string",
-    "meta": [
-        {
-            "name": "string",
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### alternative_question
-
-```json
-{
-    "question_id": "string", 
-    "question": "string"
-}
-```
-
-#### application
-
-```json
-{
-    "application_id": "string", 
-    "locale": "string", 
-    "environment": "string", 
-    "build_id": "string", 
-    "package_id": "string"
-}
-```
-
-#### bank_location
-
-```json
-{
-    "location_id": "string",
-    "location_type": [
-        "atm", 
-        "bank"
-    ], 
-    "location_name": "string",
-    "location_url": "string",
-    "location": {
-        "address": "string",
-        "city": "string",
-        "state": "string",
-        "zip": "string",
-        "country": "string",
-        "coordinates": {
-            "lat": 0.0,
-            "long": 0.0
-        }
-    },
-    "phone_number": "string",
-    "services": [
-        "string"
-    ],
-    "opening_hours": [
-        "string"
-    ],
-    "opening_days": [
-        "string"
-    ],
-    "languages": [
-        "string"
-    ]
-}
-```
-
-#### bank_locations_criteria
-
-```json
-{
-    "user_id": "string",
-    "location": {
-        "address": "string",
-        "city": "string",
-        "state": "string", 
-        "zip": "string",
-        "country": "string",
-        "coordinates": {
-          "lat": 0.0,
-          "long": 0.0
-        }
-    }
-}
-```
-
-#### categories_request
-
-```json
-{
-    "user_id": "string", 
-    "meta": [
-        {
-            "name": "string", 
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### category
-
-```json
-{
-    "category_id": "string",
-    "name": "string",
-    "alias": [
-        "string"
-    ],
-    "meta": [
-        {
-            "name": "string",
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### coordinates
-
-```json
-{
-    "lat": 0.0, 
-    "long": 0.0
-}
-```
-
-#### customer
-
-```json
-{
-    "user_id": "string", 
-    "full_name": "string", 
-    "first_name": "string",
-    "last_name": "string",
-    "email": "string", 
-    "mobile_number": "string", 
-    "meta": [
-        {
-            "name": "string",
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### customer_action_request
-
-```json
-{
-    "user_id": "string",
-    "action": "string",
-    "parameters": [
-        { 
-            "name": "string", 
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### customer_action_response
-
-```json
-{
-    "reference_id": "string",
-    "reference_number": "string",
-    "status": [
-        "processed", 
-        "pending", 
-        "cancelled", 
-        "failed"
-    ], 
-    "display_message_id": "string",
-    "meta": [
-        {
-            "name": "string",
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### customer_request
-
-```json
-{
-    "meta": [
-        {
-            "name": "string", 
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### device
-
-```json
-{
-    "type": "string", 
-    "os": "string", 
-    "model": "string", 
-    "id": "string"
-}
-```
-
-#### error_response
-
-```json
-{
-    "message": "string",
-    "code": "string",
-    "otp_details": "string", 
-    "display_message_id": "string", 
-    "meta": [
-        {
-            "name": "string",
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### interaction_request
-
-```json
-{
-    "interaction_type": [
-        "USER_INPUT", 
-        "PUSH_MESSAGE", 
-        "LIVE_CHAT_OPTION_DISPLAYED", 
-        "LOGOUT", 
-        "ENTER_TOKEN"
-    ], 
-    "application": {
-        "application_id": "string", 
-        "locale": "string", 
-        "environment": "string", 
-        "build_id": "string", 
-        "package_id": "string"
-    }, 
-    "user": {
-        "user_id": "string", 
-        "session_id": "string"
-    }, 
-    "platform": {
-        "name": "string", 
-        "conversation_id": "string", 
-        "user_id": "string"
-    }, 
-    "device": {
-        "type": "string", 
-        "os": "string", 
-        "model": "string", 
-        "id": "string"
-    }, 
-    "segment_names": [
-        "string"
-    ], 
-    "request_text": "string", 
-    "response": {
-        "message_contents": [
-            {
-                "type": [
-                    "TEXT", 
-                    "BUTTON", 
-                    "MEDIUM", 
-                    "CONTAINER", 
-                    "EVENT", 
-                    "CARD"
-                ], 
-                "payload": {}, 
-                "segment_name": "string"
-            }
-        ], 
-        "quick_replies": [
-            {
-                "type": [
-                    "TEXT", 
-                    "LOCATION"
-                ], 
-                "payload": "string", 
-                "display_text": "string"
-            }
-        ], 
-        "alternative_questions": [
-            {
-                "question_id": "string", 
-                "question": "string"
-            }
-        ]
-    }, 
-    "intent": "string", 
-    "sub_intent": "string", 
-    "elapsed_time": 0, 
-    "date": "2016-01-30T00:00:00.000+0000", 
-    "meta": [
-        {
-            "name": "string", 
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### interaction_request_response
-
-```json
-{
-    "message_contents": [
-        {
-            "type": [
-                "TEXT", 
-                "BUTTON", 
-                "MEDIUM", 
-                "CONTAINER", 
-                "EVENT", 
-                "CARD"
-            ], 
-            "payload": {}, 
-            "segment_name": "string"
-        }
-    ], 
-    "quick_replies": [
-        {
-            "type": [
-                "TEXT", 
-                "LOCATION"
-            ], 
-            "payload": "string", 
-            "display_text": "string"
-        }
-    ], 
-    "alternative_questions": [
-        {
-            "question_id": "string", 
-            "question": "string"
-        }
-    ]
-}
-```
-
-#### location
-
-```json
-{
-    "address": "string", 
-    "city": "string", 
-    "state": "string", 
-    "zip": "string", 
-    "country": "string", 
-    "coordinates": {
-        "lat": 0.0, 
-        "long": 0.0
-    }
-}
-```
-
-#### merchant
-
-```json
-{
-    "merchant_id": "string",
-    "name": "string",
-    "alias": [
-        "string"
-    ],
-    "meta": [
-        {
-            "name": "string",
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### merchants_request
-
-```json
-{
-    "user_id": "string", 
-    "meta": [
-        {
-            "name": "string", 
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### message_content
-
-```json
-{
-    "type": [
-        "TEXT", 
-        "BUTTON", 
-        "MEDIUM", 
-        "CONTAINER", 
-        "EVENT", 
-        "CARD"
-    ], 
-    "payload": {}, 
-    "segment_name": "string"
-}
-```
-
-#### name_value_pair
-
-```json
-{
-    "name": "string", 
-    "value": "string"
-}
-```
-
-#### payee
-
-```json
-{
-    "payee_id": "string",
-    "name": "string",
-    "alias": [
-        "string"
-    ],
-    "meta": [
-        {
-            "name": "string",
-            "value": "string"
-        }
-    ], 
-    "category": [
-        "payee", 
-        "biller"
-    ]
-}
-```
-
-#### payees_request
-
-```json
-{
-    "user_id": "string", 
-    "meta": [
-        {
-            "name": "string", 
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### payment
-
-```json
-{
-    "payment_id": "string",
-    "reference_number": "string",
-    "status": [
-        "processed", 
-        "pending", 
-        "cancelled", 
-        "failed"
-    ], 
-    "meta": [
-        {
-            "name": "string",
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### payment_request
-
-```json
-{
-    "user_id": "string", 
-    "source_account_id": "string",
-    "payee_id": "string", 
-    "amount": 0.0, 
-    "currency_code": "string", 
-    "date": "2016-01-30T00:00:00.000+0000", 
-    "meta": [
-        {
-            "name": "string",
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### platform
-
-```json
-{
-    "name": "string", 
-    "conversation_id": "string", 
-    "user_id": "string"
-}
-```
-
-#### quick_reply
-
-```json
-{
-    "type": [
-        "TEXT", 
-        "LOCATION"
-    ], 
-    "payload": "string", 
-    "display_text": "string"
-}
-```
-
-#### token_credentials
-
-```json
-{
-    "meta": [
-        {
-            "name": "string", 
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### token_response
-
-```json
-{
-    "user_id": "string", 
-    "token": "string",
-    "meta": [
-        {
-            "name": "string", 
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### transaction
-
-```json
-{
-    "account_id": "string",
-    "transaction_id": "string", 
-    "title": "string",
-    "description": "string", 
-    "transaction_type": [
-        "credit", 
-        "debit"
-    ], 
-    "amount": 0.0, 
-    "currency_code": "string", 
-    "categories": [
-        "string"
-    ],
-    "merchant": "string",
-    "payee": "string",
-    "location": {
-        "address": "string",
-        "city": "string",
-        "state": "string", 
-        "zip": "string",
-        "country": "string",
-        "coordinates": {
-          "lat": 0.0,
-          "long": 0.0
-        }
-    }, 
-    "status": [
-        "posted", 
-        "pending", 
-        "cancelled"
-    ], 
-    "check_number": 0, 
-    "transaction_date": "2016-01-30T00:00:00.000+0000", 
-    "post_date": "2016-01-30T00:00:00.000+0000", 
-    "meta": [
-        {
-            "name": "string",
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### transaction_criteria
-
-```json
-{
-    "user_id": "string",
-    "account_ids": [
-        "string"
-    ],
-    "limit": 0, 
-    "start_date": "2016-01-30T00:00:00.000+0000", 
-    "end_date": "2016-01-30T00:00:00.000+0000"
-}
-```
-
-#### transfer
-
-```json
-{
-    "transfer_id": "string",
-    "reference_number": "string",
-    "status": [
-        "processed", 
-        "pending", 
-        "cancelled", 
-        "failed"
-    ], 
-    "meta": [
-        {
-            "name": "string",
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### transfer_request
-
-```json
-{
-    "user_id": "string", 
-    "source_account_id": "string",
-    "dest_account_id": "string", 
-    "amount": 0.0, 
-    "currency_code": "string", 
-    "date": "2016-01-30T00:00:00.000+0000", 
-    "meta": [
-        {
-            "name": "string",
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### user
-
-```json
-{
-    "user_id": "string", 
-    "session_id": "string"
-}
-```
-
-#### validate_otp_request
-
-```json
-{
-    "user_id": "string", 
-    "otp": "string",
-    "meta": [
-        {
-            "name": "string", 
-            "value": "string"
-        }
-    ]
-}
-```
-
-#### offers_request
-
-```json
-{
-    "user_id": "string",
-    "location": {
-        "address": "string",
-        "city": "string",
-        "state": "string", 
-        "zip": "string",
-        "country": "string",
-        "coordinates": {
-          "lat": 0.0,
-          "long": 0.0
-        }
-    }
-}
-```
-
-#### offer
-
-```json
-{
-    "offer_id" : "string",
-    "summary" : "string",
-    "image_url" : "string",
-    "merchant" : "string",
-    "location_name" : "string",
-    "location_contact_number" : "string",
-    "location_email" : "string",
-    "offer_url" : "string",
-    "location" : {
-        "address" : "string",
-        "city" : "string",
-        "state" : "string",
-        "country" :"string",
-        "coordinates" : {
-            "lat" : 0.0,
-            "long" : 0.0
-        }
-    },
-    "categories" : ["string"],
-    "start_date" : "2018-01-01",
-    "end_date" : "2018-01-01",
-    "details" : [
-        "string"
-    ]
-}
-```
