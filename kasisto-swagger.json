@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.3.0 Beta 7",
+    "version": "1.3.0 Beta 8",
     "title": "Kasisto API",
     "description": "Kasisto Enterprise API",
     "contact": {
@@ -2035,11 +2035,7 @@
             "loan",
             "money_market",
             "mortgage",
-            "overdraft_protection",
-            "sloc",
-            "savings",
-            "wire",
-            "p2p_payment"
+            "savings"
           ]
         },
         "account_number": {
