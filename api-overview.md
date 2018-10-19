@@ -548,9 +548,18 @@ request_id: string
     "account_ids": [
         "string"
     ],
+    "transaction_ids": [
+        "string"
+    ],
     "limit": 0, 
     "start_date": "2016-01-30T00:00:00.000+0000", 
-    "end_date": "2016-01-30T00:00:00.000+0000"
+    "end_date": "2016-01-30T00:00:00.000+0000",
+    "meta": [
+        {
+            "name": "string", 
+            "value": "string"
+        }
+    ]
 }
 ```
 
