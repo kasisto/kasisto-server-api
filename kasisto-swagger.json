@@ -2132,6 +2132,10 @@
           "type": "number",
           "format": "float"
         },
+        "pwr_eligible": {
+          "description": "True for pay-with-rewards enabled Accounts, otherwise False",
+          "type": "boolean"
+        },
         "can_transfer_to": {
           "description": "True if account is a valid transfer destination",
           "type": "boolean"
@@ -2182,6 +2186,7 @@
           "type": "number",
           "format": "float"
         },
+
         "meta": {
           "description": "Optional data if needed for application",
           "type": "array",
@@ -2269,6 +2274,15 @@
           "description": "Date of transaction",
           "type": "string",
           "format": "date-time"
+        },
+        "rewards_earned": {
+          "description": "Number of reward points",
+          "type": "integer",
+          "format": "int32"
+        },
+        "pwr_eligible": {
+          "description": "True for pay-with-rewards enabled Accounts, otherwise False",
+          "type": "boolean"
         },
         "meta": {
           "description": "Optional data if needed for application",

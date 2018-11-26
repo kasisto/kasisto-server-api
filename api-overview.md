@@ -395,7 +395,8 @@ token: string (optional)
     "minimum_payment_due_amount": 0.0, 
     "reward_points": 0,
     "reward_miles": 0,
-    "reward_cashback": 0.0, 
+    "reward_cashback": 0.0,
+    "pwr_eligible": true, 
     "can_transfer_to": true, 
     "can_transfer_from": true, 
     "can_pay_payee": true, 
@@ -459,6 +460,7 @@ The mapping can change from Bank to Bank and is to be agreed with Kasisto prior 
 | reward_points |  |  | x |  |  |  |
 | reward_miles |  |  | x |  |  |  |
 | reward_cashback |  |  | x |  |  |  |
+| pwr_eligible | x | x | x | x | x | x |
 | can_transfer_to | x | x | x | x | x | x |
 | can_transfer_from |  | x | x |  |  | x |
 | can_pay_payee |  | x | x |  |  | x |
@@ -596,7 +598,9 @@ token: string (optional)
     "status": "string",
     "check_number": 0, 
     "transaction_date": "2016-01-30T00:00:00.000+0000", 
-    "post_date": "2016-01-30T00:00:00.000+0000", 
+    "post_date": "2016-01-30T00:00:00.000+0000",
+    "rewards_earned": 0, 
+    "pwr_eligible": true, 
     "meta": [
         {
             "name": "string",
