@@ -2466,8 +2466,8 @@
           "type": "string"
         },
         "offer_type": {
-          "description": "Type of offer(rewards, benefits, etc)",
-          "type": "string"
+          "description": "Type of offer(integer identifier corresponding to rewards, benefits, etc)",
+          "type": "integer"
         },
         "summary": {
           "description": "Summary text of the offer",
