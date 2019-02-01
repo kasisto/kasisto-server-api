@@ -1242,6 +1242,7 @@ token: string (optional)
 [
     {
         "offer_id" : "string",
+        "offer_type" : "string",
         "summary" : "string",
         "image_url" : "string",
         "merchant" : "string",
