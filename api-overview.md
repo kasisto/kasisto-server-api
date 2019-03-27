@@ -1,9 +1,8 @@
 # Kasisto Enterprise API Overview
-Version 1.3 Beta 8
+Version 1.3 Beta 10
 
 - [Authentication](#authentication)
 - [Authorization](#authorization)
-- [Schema](#schema)
 - [Customer Methods](#customer-methods)
   * [/token](#token)
   * [/validate_otp](#validate-otp)
@@ -33,16 +32,14 @@ Version 1.3 Beta 8
 The Kasisto API requires all requests to include a secret key header value used for request authentication.  Kasisto will include the secret key header in each request from our servers. API implementations must validate the secret is correct.
 Server implementations should return a 401 HTTP status code response if authentication fails.
 
+All API access must be over HTTPS.  All data is sent and received as JSON.
+
 ## Authorization
 The Kasisto API allows requests to include a user authorization token header value.  This token should be validated on the server implementation to match the provided user_id value and that is has the necessary privileges to access the requested information.
 Server implementations should return a 403 HTTP status code response if authorization fails.
 
 ## Tracking
 The Kasisto API requests include a unique request identifier. This identifier is provided as a request_id field in the HTTP Request header. This request_id can be used to track the requests when investigating execution logs.
-
-## Schema
-All API access must be over HTTPS.  All data is sent and received as JSON.
-Schema definitions are described [here](#schema-definitions).
 
 ## Exception handling
 All the service in the Kasisto API should follow the same exception handling mechanism.
@@ -406,6 +403,7 @@ token: string (optional)
     "original_tenor_unit": "string",
     "maturity_date": "2016-01-30", 
     "annual_fee": 0.0, 
+    "principal" : 0.0,
     "meta": [
         {
             "name": "string",
@@ -469,6 +467,7 @@ The mapping can change from Bank to Bank and is to be agreed with Kasisto prior 
 | original_tenor | x |  |  | x | x |  |
 | original_tenor_unit | x |  |  | x | x |  |
 | maturity_date | x |  |  | x | x |  |
+| principal | x |  |  | x | x |  |
 
 8) For Accounts in foreign currency:
 
@@ -1495,3 +1494,21 @@ token: string (optional)
 
 ```
 
+### Schema Definitions
+
+#### error_response
+
+```json
+{
+    "message": "string",
+    "code": "string",
+    "otp_details": "string", 
+    "display_message_id": "string", 
+    "meta": [
+        {
+            "name": "string",
+            "value": "string"
+        }
+    ]
+}
+```

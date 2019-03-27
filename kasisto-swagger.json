@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.3.0 Beta 8",
+    "version": "1.3.0 Beta 10",
     "title": "Kasisto API",
     "description": "Kasisto Enterprise API",
     "contact": {
@@ -2179,6 +2179,11 @@
         },
         "annual_fee": {
           "description": "Annual fee for the account",
+          "type": "number",
+          "format": "float"
+        },
+        "principal": {
+          "description": "Principal amount for the account",
           "type": "number",
           "format": "float"
         },
