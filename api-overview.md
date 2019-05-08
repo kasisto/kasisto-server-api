@@ -84,13 +84,13 @@ This service is used for the Authentication pass-through mechanism. (Please chec
 | locale | header |
 | Date | header |
 | request_id | header |
-| [token_credentials](#token_credentials) | body |
+| token_credentials | body |
 
 ##### Responses
 
 | Status | Description | Schema |
 | ------ | ----------- | ------ |
-| 200 | token response | [token_response](#token_response) |
+| 200 | token response | token_response |
 | 401 | Authentication Failed | [error_response](#error_response) |
 | 403 | Access Denied | [error_response](#error_response) |
 | 500 | Server Error | [error_response](#error_response) |
@@ -158,13 +158,13 @@ This service validates a One-Time Password and returns a new user token
 | locale | header |
 | Date | header |
 | request_id | header |
-| [validate_otp_request](#validate_otp_request) | body |
+| validate_otp_request | body |
 
 ##### Responses
 
 | Status | Description | Schema |
 | ------ | ----------- | ------ |
-| 200 | token response | [token_response](#token_response) |
+| 200 | token response | token_response |
 | 401 | Authentication Failed | [error_response](#error_response) |
 | 403 | Access Denied | [error_response](#error_response) |
 | 451 | Invalid One-Time Password | [error_response](#error_response) |
@@ -240,13 +240,13 @@ Gets the customer details.
 | locale | header |
 | Date | header |
 | request_id | header |
-| [customer_request](#customer_request) | body |
+| customer_request | body |
 
 ##### Responses
 
 | Status | Description | Schema |
 | ------ | ----------- | ------ |
-| 200 | customer response | [customer](#customer) |
+| 200 | customer response | customer |
 | 401 | Authentication Failed | [error_response](#error_response) |
 | 403 | Access Denied | [error_response](#error_response) |
 | 450 | One-Time Password is required | [error_response](#error_response) |
@@ -327,13 +327,13 @@ Gets the list of all the customer's accounts.
 | locale | header |
 | Date | header |
 | request_id | header |
-| [accounts_request](#accounts_request) | body |
+| accounts_request | body |
 
 ##### Responses
 
 | Status | Description | Schema |
 | ------ | ----------- | ------ |
-| 200 | accounts response | Array of [account](#account) |
+| 200 | accounts response | Array of account |
 | 401 | Authentication Failed | [error_response](#error_response) |
 | 403 | Access Denied | [error_response](#error_response) |
 | 450 | One-Time Password is required | [error_response](#error_response) |
@@ -417,7 +417,6 @@ token: string (optional)
 1) The field "account_type" in response should typically be any one of the following: "cd","checking","credit_card","loan","mortgage","savings". Please refer to the swagger specifications for a complete listing.
 
 2) The "account_number" of the account may optionally be masked. However, the last unique N digits in the account numbers must be provided. E.g. A credit card account number of "4515874554548888" can be returned as "8888" or "xxxxxxxxxxxx8888"    
-
 3) The field "account_status" in response should be one of the following: "active","inactive".
 Only the Credit Cards with an "inactive" status are eligible for the Credit Card Activation intent.
 
@@ -497,6 +496,8 @@ The mapping can change from Bank to Bank and is to be agreed with Kasisto prior 
 }
 ```
 
+12) The field "principal" refers to the principal amount of an account. 
+
 ### Transactions Methods
 
 #### Transactions
@@ -516,13 +517,13 @@ Searches the customer's transactions.
 | locale | header |
 | Date | header |
 | request_id | header |
-| [transaction_criteria](#transaction_criteria) | body |
+| transaction_criteria | body |
 
 ##### Responses
 
 | Status | Description | Schema |
 | ------ | ----------- | ------ |
-| 200 | transactions | Array of [transaction](#transaction) |
+| 200 | transactions | Array of transaction |
 | 401 | Authentication Failed | [error_response](#error_response) |
 | 403 | Access Denied | [error_response](#error_response) |
 | 450 | One-Time Password is required | [error_response](#error_response) |
@@ -644,13 +645,13 @@ Get transaction categories
 | locale | header |
 | Date | header |
 | request_id | header |
-| [categories_request](#categories_request) | body |
+| categories_request | body |
 
 ##### Responses
 
 | Status | Description | Schema |
 | ------ | ----------- | ------ |
-| 200 | categories response | Array of [category](#category) |
+| 200 | categories response | Array of category |
 | 401 | Authentication Failed | [error_response](#error_response) |
 | 403 | Access Denied | [error_response](#error_response) |
 | 500 | Server Error | [error_response](#error_response) |
@@ -718,13 +719,13 @@ Gets the list of merchants for this user.
 | locale | header |
 | Date | header |
 | request_id | header |
-| [merchants_request](#merchants_request) | body |
+| merchants_request | body |
 
 ##### Responses
 
 | Status | Description | Schema |
 | ------ | ----------- | ------ |
-| 200 | merchants response | Array of [merchant](#merchant) |
+| 200 | merchants response | Array of merchant |
 | 401 | Authentication Failed | [error_response](#error_response) |
 | 403 | Access Denied | [error_response](#error_response) |
 | 500 | Server Error | [error_response](#error_response) |
@@ -797,13 +798,13 @@ This service can be used to transfer money from one account to another or to exe
 | locale | header |
 | Date | header |
 | request_id | header |
-| [transfer_request](#transfer_request) | body |
+| transfer_request | body |
 
 ##### Responses
 
 | Status | Description | Schema |
 | ------ | ----------- | ------ |
-| 200 | transfer response | [transfer](#transfer) |
+| 200 | transfer response | transfer |
 | 401 | Authentication Failed | [error_response](#error_response) |
 | 403 | Access Denied | [error_response](#error_response) |
 | 450 | One-Time Password is required | [error_response](#error_response) |
@@ -893,13 +894,13 @@ Pays funds to a payee.
 | locale | header |
 | Date | header |
 | request_id | header |
-| [payment_request](#payment_request) | body |
+| payment_request | body |
 
 ##### Responses
 
 | Status | Description | Schema |
 | ------ | ----------- | ------ |
-| 200 | payment response | [payment](#payment) |
+| 200 | payment response | payment |
 | 401 | Authentication Failed | [error_response](#error_response) |
 | 403 | Access Denied | [error_response](#error_response) |
 | 450 | One-Time Password is required | [error_response](#error_response) |
@@ -984,13 +985,13 @@ Gets the list of payees for a user.
 | locale | header |
 | Date | header |
 | request_id | header |
-| [payees_request](#payees_request) | body |
+| payees_request | body |
 
 ##### Responses
 
 | Status | Description | Schema |
 | ------ | ----------- | ------ |
-| 200 | payees response | Array of [payee](#payee) |
+| 200 | payees response | Array of payee |
 | 401 | Authentication Failed | [error_response](#error_response) |
 | 403 | Access Denied | [error_response](#error_response) |
 | 500 | Server Error | [error_response](#error_response) |
@@ -1065,13 +1066,13 @@ Searches for bank locations.
 | locale | header |
 | Date | header |
 | request_id | header |
-| [bank_locations_criteria](#bank_locations_criteria) | body |
+| bank_locations_criteria | body |
 
 ##### Responses
 
 | Status | Description | Schema |
 | ------ | ----------- | ------ |
-| 200 | bank_locations | Array of [bank_location](#bank_location) |
+| 200 | bank_locations | Array of bank_location |
 | 401 | Authentication Failed | [error_response](#error_response) |
 | 403 | Access Denied | [error_response](#error_response) |
 | 450 | One-Time Password is required | [error_response](#error_response) |
@@ -1190,13 +1191,13 @@ Obtain a list of offers that can be redeemed by the user.
 | locale | header |
 | request_id | header |
 | Date | header |
-| [offers_request](#offers_request) | body |
+| offers_request | body |
 
 ##### Responses
 
 | Status | Description | Schema |
 | ------ | ----------- | ------ |
-| 200 | offers response | Array of [offer](#offer) |
+| 200 | offers response | Array of offer |
 | 401 | Authentication Failed | [error_response](#error_response) |
 | 403 | Access Denied | [error_response](#error_response) |
 | 500 | Server Error | [error_response](#error_response) |
@@ -1298,13 +1299,13 @@ This service is a generic service that allows the customer to submit different t
 | locale | header |
 | Date | header |
 | request_id | header |
-| [customer_action_request](#customer_action_request) | body |
+| customer_action_request | body |
 
 ##### Responses
 
 | Status | Description | Schema |
 | ------ | ----------- | ------ |
-| 200 | Customer action response | [customer_action_response](#customer_action_response) |
+| 200 | Customer action response | customer_action_response |
 | 401 | Authentication Failed | [error_response](#error_response) |
 | 403 | Access Denied | [error_response](#error_response) |
 | 450 | One-Time Password is required | [error_response](#error_response) |
@@ -1398,7 +1399,7 @@ This service receives the user interaction transcripts as they occur. (Only avai
 | locale | header |
 | Date | header |
 | request_id | header |
-| [interaction_request](#interaction_request) | body |
+| interaction_request | body |
 
 ##### Responses
 
