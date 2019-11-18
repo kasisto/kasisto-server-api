@@ -1,5 +1,7 @@
 # Setting up an Enterprise API
 
+# WARNING: This page is no longer maintained. Check <a href="https://docs.kasisto.com/">https://docs.kasisto.com/</a> for the latest version of the document. 
+
 ## What is the Enterprise API?
 
 The Enterprise API is a specification that Kasisto uses to access bank services
