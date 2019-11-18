@@ -1,6 +1,8 @@
 # Kasisto Enterprise API Overview
 Version 1.3 Beta 10
 
+# WARNING: This page is no longer maintained. Check <a href="https://docs.kasisto.com/">https://docs.kasisto.com/</a> for the latest version of the document. 
+
 - [Authentication](#authentication)
 - [Authorization](#authorization)
 - [Customer Methods](#customer-methods)

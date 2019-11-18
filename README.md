@@ -5,6 +5,9 @@ Integrate your customer data with Kasisto.
 
 This page describes the Kasisto Enterprise API.
 
+# WARNING: This page is no longer maintained. Check <a href="https://docs.kasisto.com/">https://docs.kasisto.com/</a> for the latest version of the document. 
+
+
 ## Overview
 
 Unlike many other REST API specifications, this specifies an API that *your institution must implement on the server*.  
